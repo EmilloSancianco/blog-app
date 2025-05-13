@@ -23,7 +23,7 @@ mongoose.connection.once('open', () => console.log('Now connected to MongoDB Atl
 
 const corsOptions = {
 
-	origin: ['http://localhost:8000', 'http://localhost:3000'], 
+	origin: ['http://localhost:8000', 'http://localhost:3000', 'https://blog-app-gold-nu.vercel.app'], 
 
 	credentials: true, 
 	optionsSuccessStatus: 200 
@@ -44,3 +44,5 @@ if(require.main === module) {
 };
 
 module.exports = {app, mongoose};
+
+
