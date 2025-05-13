@@ -1,4 +1,4 @@
-const Post = require('../models/post')
+const Post = require('../models/Post')
 const auth = require('../auth');
 
 // Create a new post (Authenticated users only)
