@@ -83,7 +83,7 @@ const RegisterPage = () => {
         setIsLoading(true);
 
         try {
-            const response = await fetch('http://localhost:4000/users/register', {
+            const response = await fetch('https://blog-app-3sr0.onrender.com/users/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, username, password }),

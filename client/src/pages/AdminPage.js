@@ -60,7 +60,7 @@ const AdminPage = () => {
 
         const fetchPosts = async () => {
             try {
-                const response = await fetch('http://localhost:4000/posts/getAllPosts', {
+                const response = await fetch('https://blog-app-3sr0.onrender.com/posts/getAllPosts', {
                     headers: getAuthHeaders(),
                 });
 
@@ -86,7 +86,7 @@ const AdminPage = () => {
                 for (const post of formattedPosts) {
                     try {
                         const commentResponse = await fetch(
-                            `http://localhost:4000/posts/comments/${post.id}`,
+                            `https://blog-app-3sr0.onrender.com/posts/comments/${post.id}`,
                             {
                                 method: 'GET',
                                 headers: { 'Content-Type': 'application/json' },
@@ -121,7 +121,7 @@ const AdminPage = () => {
 
     const handleUpdatePost = async (postId, updatedData) => {
         try {
-            const response = await fetch(`http://localhost:4000/posts/updatePost/${postId}`, {
+            const response = await fetch(`https://blog-app-3sr0.onrender.com/posts/updatePost/${postId}`, {
                 method: 'PATCH',
                 headers: getAuthHeaders(),
                 body: JSON.stringify(updatedData),
@@ -154,7 +154,7 @@ const AdminPage = () => {
             const token = localStorage.getItem('token');
             // Delete all comments for the post
             const deleteCommentsResponse = await fetch(
-                `http://localhost:4000/posts/comments/${postId}`,
+                `https://blog-app-3sr0.onrender.com/posts/comments/${postId}`,
                 {
                     method: 'DELETE',
                     headers: getAuthHeaders(),
@@ -169,7 +169,7 @@ const AdminPage = () => {
 
             // Delete the post
             const deletePostResponse = await fetch(
-                `http://localhost:4000/posts/deletePost/${postId}`,
+                `https://blog-app-3sr0.onrender.com/posts/deletePost/${postId}`,
                 {
                     method: 'DELETE',
                     headers: getAuthHeaders(),
@@ -197,7 +197,7 @@ const AdminPage = () => {
         try {
             const token = localStorage.getItem('token');
             const response = await fetch(
-                `http://localhost:4000/posts/deleteComment/${postId}/${commentId}`,
+                `https://blog-app-3sr0.onrender.com/posts/deleteComment/${postId}/${commentId}`,
                 {
                     method: 'DELETE',
                     headers: {

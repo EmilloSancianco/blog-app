@@ -27,7 +27,7 @@ const ProfilePage = () => {
         const fetchProfile = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await fetch('http://localhost:4000/users/details', {
+                const response = await fetch('https://blog-app-3sr0.onrender.com/users/details', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ const ProfilePage = () => {
 
         const fetchPosts = async () => {
             try {
-                const response = await fetch('http://localhost:4000/posts/getAllPosts', {
+                const response = await fetch('https://blog-app-3sr0.onrender.com/posts/getAllPosts', {
                     method: 'GET',
                     headers: { 'Content-Type': 'application/json' },
                 });
@@ -89,7 +89,7 @@ const ProfilePage = () => {
     const handleUpdatePost = async (postId, updatedData) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:4000/posts/updatePost/${postId}`, {
+            const response = await fetch(`https://blog-app-3sr0.onrender.com/posts/updatePost/${postId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ const ProfilePage = () => {
     const handleDeletePost = async (postId) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:4000/posts/deletePost/${postId}`, {
+            const response = await fetch(`https://blog-app-3sr0.onrender.com/posts/deletePost/${postId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',

@@ -26,7 +26,7 @@ function App() {
 
     useEffect(() => {
         if (localStorage.getItem('token')) {
-            fetch('http://localhost:4000/users/details', {
+            fetch('https://blog-app-3sr0.onrender.com/users/details', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },

@@ -23,7 +23,7 @@ const BlogPage = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const response = await fetch('http://localhost:4000/posts/getAllPosts', {
+                const response = await fetch('https://blog-app-3sr0.onrender.com/posts/getAllPosts', {
                     method: 'GET',
                     headers: { 'Content-Type': 'application/json' },
                 });
@@ -50,7 +50,7 @@ const BlogPage = () => {
                 const commentsData = {};
                 for (const post of formattedPosts) {
                     try {
-                        const commentResponse = await fetch(`http://localhost:4000/posts/comments/${post.id}`, {
+                        const commentResponse = await fetch(`https://blog-app-3sr0.onrender.com/posts/comments/${post.id}`, {
                             method: 'GET',
                             headers: { 'Content-Type': 'application/json' },
                         });
@@ -83,7 +83,7 @@ const BlogPage = () => {
                 const token = localStorage.getItem('token');
                 if (!token) return;
 
-                const response = await fetch('http://localhost:4000/users/details', {
+                const response = await fetch('https://blog-app-3sr0.onrender.com/users/details', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ const BlogPage = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:4000/posts/addComment/${postId}`, {
+            const response = await fetch(`https://blog-app-3sr0.onrender.com/posts/addComment/${postId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -155,7 +155,7 @@ const BlogPage = () => {
     const handleEditComment = async (postId, commentId, updatedComment) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:4000/posts/editComment/${postId}/${commentId}`, {
+            const response = await fetch(`https://blog-app-3sr0.onrender.com/posts/editComment/${postId}/${commentId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -188,7 +188,7 @@ const BlogPage = () => {
     const handleDeleteComment = async (postId, commentId) => {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch(`http://localhost:4000/posts/deleteComment/${postId}/${commentId}`, {
+            const response = await fetch(`https://blog-app-3sr0.onrender.com/posts/deleteComment/${postId}/${commentId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -245,7 +245,7 @@ const BlogPage = () => {
                 throw new Error('You must be logged in to create a post');
             }
 
-            const response = await fetch('http://localhost:4000/posts/createPost', {
+            const response = await fetch('https://blog-app-3sr0.onrender.com/posts/createPost', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -290,7 +290,7 @@ const BlogPage = () => {
                 throw new Error('You must be logged in to update a post');
             }
 
-            const response = await fetch(`http://localhost:4000/posts/updatePost/${postId}`, {
+            const response = await fetch(`https://blog-app-3sr0.onrender.com/posts/updatePost/${postId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -334,7 +334,7 @@ const BlogPage = () => {
                 throw new Error('You must be logged in to delete a post');
             }
 
-            const response = await fetch(`http://localhost:4000/posts/deletePost/${postId}`, {
+            const response = await fetch(`https://blog-app-3sr0.onrender.com/posts/deletePost/${postId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
