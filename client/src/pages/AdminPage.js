@@ -149,49 +149,43 @@ const AdminPage = () => {
         }
     };
 
-    const handleDeletePost = async (postId) => {
-        try {
-            const token = localStorage.getItem('token');
-            // Delete all comments for the post
-            const deleteCommentsResponse = await fetch(
-                `https://blog-app-3sr0.onrender.com/posts/comments/${postId}`,
-                {
-                    method: 'DELETE',
-                    headers: getAuthHeaders(),
-                }
-            );
+        const handleDeletePost = async (postId) => {
+    try {
+        const headers = getAuthHeaders();
 
-            if (!deleteCommentsResponse.ok) {
-                const errorData = await deleteCommentsResponse.json();
-                notyf.error(errorData.message || 'Failed to delete comments');
-                return false;
+        const deletePostResponse = await fetch(
+            `https://blog-app-3sr0.onrender.com/posts/deletePost/${postId}`,
+            {
+                method: 'DELETE',
+                headers,
             }
+        );
 
-            // Delete the post
-            const deletePostResponse = await fetch(
-                `https://blog-app-3sr0.onrender.com/posts/deletePost/${postId}`,
-                {
-                    method: 'DELETE',
-                    headers: getAuthHeaders(),
-                }
-            );
-
-            const data = await deletePostResponse.json();
-
-            if (deletePostResponse.ok) {
-                notyf.success('Post and all comments deleted successfully!');
-                setPosts(posts.filter(post => post.id !== postId));
-                setComments({ ...comments, [postId]: [] });
-                return true;
-            } else {
-                notyf.error(data.message || 'Failed to delete post');
-                return false;
+        if (!deletePostResponse.ok) {
+            let errorMessage = 'Failed to delete post';
+            try {
+                const data = await deletePostResponse.json();
+                errorMessage = data.message || errorMessage;
+            } catch {
+                const text = await deletePostResponse.text();
+                console.error('Delete post response text:', text);
             }
-        } catch (err) {
-            notyf.error(err.message || 'Internal server error');
+            notyf.error(errorMessage);
             return false;
         }
-    };
+
+        const data = await deletePostResponse.json();
+
+        notyf.success('Post deleted successfully!');
+        setPosts(posts.filter(post => post.id !== postId));
+        setComments({ ...comments, [postId]: [] }); 
+        return true;
+
+    } catch (err) {
+        notyf.error(err.message || 'Internal server error');
+        return false;
+    }
+};
 
     const handleDeleteComment = async (postId, commentId) => {
         try {
